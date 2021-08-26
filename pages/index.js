@@ -39,16 +39,14 @@ export default function Home() {
   const startGame = useCallback(async () => {
     setGameLoading(true);
 
-    const responses = await Promise.all(
-      selectedCategories.map(({ value }) => fetch(`data/${value}.txt`))
+    const responseTexts = await Promise.all(
+      selectedCategories.map(({ value }) =>
+        fetch(`data/${value}.txt`).then((response) => response.text())
+      )
     );
 
-    const texts = await Promise.all(
-      responses.map((response) => response.text())
-    );
-
-    const statements = texts
-      .map((text) => text.split("\n"))
+    const statements = responseTexts
+      .map((responseText) => responseText.split("\n"))
       .reduce((a, b) => [...a, ...b], []);
 
     const [newSelectedStatement, newStatements] = popRandomElement(statements);

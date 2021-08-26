@@ -41,7 +41,7 @@ export default function Home() {
     setGameLoading(true);
 
     const responses = await Promise.all(
-      selectedCategories.map(({ value }) => fetch(`/data/${value}.txt`))
+      selectedCategories.map(({ value }) => fetch(`data/${value}.txt`))
     );
 
     const texts = await Promise.all(

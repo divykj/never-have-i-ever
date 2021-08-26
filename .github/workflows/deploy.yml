@@ -1,0 +1,35 @@
+name: Deploy to Github Pages 🚀
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Setup NodeJS 💚
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+          cache: "yarn"
+
+      - name: Install, Build and Export 📦
+        run: |
+          yarn
+          yarn run build
+          yarn run export
+
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./out
+          commit_message: "🚀 ${{ github.event.head_commit.message }}"

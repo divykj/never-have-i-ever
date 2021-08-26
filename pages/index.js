@@ -32,7 +32,6 @@ export default function Home() {
 
   const selectNextStatement = useCallback(() => {
     const [newSelectedStatement, newStatements] = popRandomElement(statements);
-    console.log(newSelectedStatement, newStatements);
     setSelectedStatement(newSelectedStatement);
     setStatements(newStatements);
   }, [statements]);
@@ -53,7 +52,6 @@ export default function Home() {
       .reduce((a, b) => [...a, ...b], []);
 
     const [newSelectedStatement, newStatements] = popRandomElement(statements);
-    console.log(newSelectedStatement, newStatements);
     setSelectedStatement(newSelectedStatement);
     setStatements(newStatements);
     setGameStarted(true);

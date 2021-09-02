@@ -4,9 +4,11 @@
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
-    "start": "next start"
+    "start": "next start",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^11.1.2",
     "marked": "^3.0.2",
     "next": "latest",
     "react": "^17.0.2",
